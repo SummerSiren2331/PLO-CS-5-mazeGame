@@ -5,6 +5,8 @@ and moving to the next node based on input? might have to use index-based coordi
 Then you'd have to call a draw update, but we should now have full control over the canvas, so we could
 probably update only specific elements with StdDrawEmbedded.
 
+TODO: Implement a chat log to display console messages in the GUI?
+
 FINISHED TODOs----------------------------
 
 
