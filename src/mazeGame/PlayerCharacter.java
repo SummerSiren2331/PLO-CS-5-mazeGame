@@ -10,6 +10,8 @@ public class PlayerCharacter {
 	private int stamina = 1;
 	private int dmg = 1;
 	
+	private boolean canAtk = false;
+	
 	public PlayerCharacter(int hp, int stamina, int dmg) {
 		this.hp = hp;
 		this.stamina = stamina;
@@ -28,6 +30,19 @@ public class PlayerCharacter {
 		return dmg;
 	}
 	
+	public boolean isCanAtk() {
+		return canAtk;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
+
+	public void setCanAtk(boolean canAtk) {
+		this.canAtk = canAtk;
+	}
+	
+	// pass in subclass and get their dmg number?
 	public void takeDmg(int dmg) {
 		hp -= dmg;
 	}
