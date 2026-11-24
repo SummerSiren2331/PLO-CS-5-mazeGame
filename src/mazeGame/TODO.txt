@@ -1,0 +1,10 @@
+Insert any TODOs in random order- things that could be fixed, tweaked, implemented, etc., move all solved TODOs under the header in the order they're solved, so we have a history of work.
+
+TODO: Plan a way to move drawn objects, perhapse by using an array on the nodes to indicate contents, 
+and moving to the next node based on input? might have to use index-based coordinates with the Node[][] nodemap.
+Then you'd have to call a draw update, but we should now have full control over the canvas, so we could
+probably update only specific elements with StdDrawEmbedded.
+
+FINISHED TODOs----------------------------
+
+
