@@ -2,17 +2,23 @@ package mazeGame;
 
 import edu.princeton.cs.algs4.ST;
 
+/**
+ * 
+ * @author Alex Tra
+ */
 public class Player extends PlayerCharacter {
 	
 	//private int[] inventory = new int[4];
 	private ST<Interactables, Integer> inventory = new ST<>();
 	
+	/*
 	// SWORD, POTION, SPELLSCROLL, HELMET, TRAP
 	int swordIndex = 0;
 	int potionIndex = 1;
 	int spellIndex = 2;
 	int helmetIndex = 3;
 	int trapIndex = 4;
+	*/
 	
 
 	public Player(int hp, int stamina, int dmg) {
@@ -43,11 +49,11 @@ public class Player extends PlayerCharacter {
 		*/
 		
 		// SYMBOL TABLE CODE IF INVENTORY IS A SYMBOL TABLE
-		for (Interactables i : inventory.keys()) {
-			if (i == item) {
-				inventory.put(item, inventory.get(item) + 1);
-			}
-		}
+		inventory.put(item, inventory.get(item) + 1);
+		
+		// might be better placed elsewhere
+		if (inventory.get(Interactables.SWORD) > 0) setCanAtk(true);
+		else setCanAtk(false);
 	}
 	
 	public void useInteractable(Interactables item) {
@@ -57,6 +63,27 @@ public class Player extends PlayerCharacter {
 		}
 		
 		// TODO: FIGURE OUT CODE FOR USING AN ITEM DEPENDING ON WHAT IT IS
+		if (item == Interactables.SWORD) {
+			
+		}
+		
+		if (item == Interactables.POTION) {
+			setHp(getHp() + 1);
+		}
+		
+		if (item == Interactables.SPELLSCROLL) {
+			
+		}
+		
+		if (item == Interactables.HELMET) {
+			
+		}
+		
+		if (item == Interactables.TRAP) {
+			
+		}
+		
+		inventory.put(item, inventory.get(item) - 1);
 	}
 
 }
