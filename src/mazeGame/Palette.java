@@ -1,5 +1,5 @@
 package mazeGame;
 
-public enum Color {
+public enum Palette {
 	WHITE, RED1, BLUE, PURPLE, GREEN, RED2, YELLOW
 }
