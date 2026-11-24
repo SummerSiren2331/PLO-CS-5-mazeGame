@@ -128,11 +128,12 @@ public class Maze {
         }
 
         // add some random walls
+        /*
         for (int i = 0; i < cols; i++) {
             int col = cols / 2 + StdRandom.uniformInt(cols / 2);
             int row = rows / 2 + StdRandom.uniformInt(rows / 2);
             east[col][row] = west[col + 1][row] = true;
-        }
+        }*/
 
     }
 
@@ -183,20 +184,14 @@ public class Maze {
         StdDrawEmbedded.filledCircle(1.5, 1.5, 0.375);
 
         StdDrawEmbedded.setPenColor(StdDrawEmbedded.BLACK);
-        // Modified because lines would display with inconsistent thickness // TODO: still happening
         for (int col = 1; col <= cols; col++) {
             for (int row = 1; row <= rows; row++) {
-            	if (north[col][row]) StdDrawEmbedded.line(col, row + 1, col + 1, row + 1);
-            	if (west[col][row])  StdDrawEmbedded.line(col, row, col, row + 1);
+                if (south[col][row]) StdDrawEmbedded.line(col, row, col + 1, row);
+                if (north[col][row]) StdDrawEmbedded.line(col, row + 1, col + 1, row + 1);
+                if (west[col][row]) StdDrawEmbedded.line(col, row, col, row + 1);
+                if (east[col][row]) StdDrawEmbedded.line(col + 1, row, col + 1, row + 1);
             }
         }
-        for (int col = 1; col <= cols; col++) {
-            StdDrawEmbedded.line(col, 1, col + 1, 1);
-        }
-        for (int row = 1; row <= rows; row++) {
-            StdDrawEmbedded.line(cols + 1, row, cols + 1, row + 1);
-        }
-        
         StdDrawEmbedded.show();
         StdDrawEmbedded.pause(1000);
     }
