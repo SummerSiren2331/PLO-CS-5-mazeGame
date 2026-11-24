@@ -1,5 +1,6 @@
 package mazeGame;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 /**
@@ -12,6 +13,8 @@ public class mazeGameControl {
 	
 	// Returns color based on enum (or is there a better way to do this?)
 	public Color setColor(Palette p) {
-		
+		return new Color(255, 255, 255);
 	}
+	
+	
 }

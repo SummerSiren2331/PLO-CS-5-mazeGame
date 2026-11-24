@@ -18,26 +18,29 @@ import java.awt.Dimension;
  */
 public class mazeGameApp extends JFrame {
 	
-	private static int windowWidth = 960;
-	private static int windowHeight = 540;
+	protected static int windowWidth = 960;
+	protected static int windowHeight = 540;
 
-	private static final long serialVersionUID = 1L;
-	private JPanel mazeGame;
+	protected static final long serialVersionUID = 1L;
+	protected JPanel mazeGame;
+	protected static JPanel mazePanel;
+	
+	protected static int cols = 5;
+	public static int rows = 5;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					mazeGameApp frame = new mazeGameApp();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	    EventQueue.invokeLater(() -> {
+	        try {
+	            mazeGameApp frame = new mazeGameApp();
+	            frame.setVisible(true);
+	            frame.startMaze();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    });
 	}
 
 	/**
@@ -47,7 +50,7 @@ public class mazeGameApp extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, windowWidth, windowHeight);
 		mazeGame = new JPanel();
-		mazeGame.setPreferredSize(new Dimension(420, 540));
+		mazeGame.setPreferredSize(new Dimension(960, 540));
 		mazeGame.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(mazeGame);
 		mazeGame.setLayout(new BorderLayout(0, 0));
@@ -85,7 +88,25 @@ public class mazeGameApp extends JFrame {
 		FlowLayout flowLayout_2 = (FlowLayout) alg4Panel.getLayout();
 		flowLayout_2.setAlignment(FlowLayout.LEFT);
 		settingsPanel.add(alg4Panel);
-
+		
+		mazePanel = new JPanel();
+		mazePanel.setLayout(new BorderLayout());
+		mazeGame.add(mazePanel, BorderLayout.CENTER);
 	}
 
+	/*
+	 * Initializes a maze game
+	 */
+	private void startMaze() {
+	    Node[][] nodeMap = new Node[cols][rows];
+	    Maze maze = new Maze(cols, rows, nodeMap);
+
+	    mazeGameApp.mazePanel.add(StdDrawEmbedded.getDrawPanel(), BorderLayout.CENTER);
+	    mazeGameApp.mazePanel.revalidate();
+	    mazeGameApp.mazePanel.repaint();
+	    StdDrawEmbedded.enableDoubleBuffering();
+
+	    maze.draw();
+	    new Thread(() -> maze.solve()).start();
+	}
 }
