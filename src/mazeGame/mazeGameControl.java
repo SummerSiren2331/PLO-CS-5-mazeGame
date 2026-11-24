@@ -6,4 +6,5 @@ package mazeGame;
  */
 public class mazeGameControl {
 	// TODO: First, plan how to control character movement
+	// USE KEYLISTENER FROM SWING??
 }
