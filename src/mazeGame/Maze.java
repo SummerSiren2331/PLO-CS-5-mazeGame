@@ -1,6 +1,5 @@
 package mazeGame;
 
-import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdRandom;
 
 /******************************************************************************
@@ -18,7 +17,11 @@ import edu.princeton.cs.algs4.StdRandom;
  *        in a graph.
  *
  ******************************************************************************/
-
+/*
+ * @author Robert Sedgewick
+ * @author Kevin Wayne
+ * @author Morgan Fidler [Modification] to allow for embed support in windowbuilder projects
+ */
 public class Maze {
     private final int cols, rows;   // dimension of maze
     private boolean[][] north;      // is there a wall to north of cell (col, row)
@@ -29,15 +32,16 @@ public class Maze {
     Node[][] nodeMap;
     private boolean isDone = false;
 
-    public Maze(int cols, int rows) {
+    public Maze(int cols, int rows, Node[][] nodeMap) {
+    	this.nodeMap = nodeMap;
         this.cols = cols;
         this.rows = rows;
-        int height = 800;
+        int height = 540;
         int width = (int) Math.round(1.0 * height * cols / rows);
-        StdDraw.setCanvasSize(width, height);
+        StdDrawEmbedded.setCanvasSize(width, height);
 
-        StdDraw.setXscale(0, cols + 2);
-        StdDraw.setYscale(0, rows + 2);
+        StdDrawEmbedded.setXscale(0, cols + 2);
+        StdDrawEmbedded.setYscale(0, rows + 2);
         init();
         generate();
     }
@@ -140,10 +144,10 @@ public class Maze {
         if (visited[col][row]) return;
         visited[col][row] = true;
 
-        StdDraw.setPenColor(StdDraw.BLUE);
-        StdDraw.filledCircle(col + 0.5, row + 0.5, 0.25);
-        StdDraw.show();
-        StdDraw.pause(250);
+        StdDrawEmbedded.setPenColor(StdDrawEmbedded.BLUE);
+        StdDrawEmbedded.filledCircle(col + 0.5, row + 0.5, 0.25);
+        StdDrawEmbedded.show();
+        StdDrawEmbedded.pause(250);
 
         // reached middle
         if (col == cols / 2 && row == rows / 2) isDone = true;
@@ -155,10 +159,10 @@ public class Maze {
 
         if (isDone) return;
 
-        StdDraw.setPenColor(StdDraw.GRAY);
-        StdDraw.filledCircle(col + 0.5, row + 0.5, 0.25);
-        StdDraw.show();
-        StdDraw.pause(250);
+        StdDrawEmbedded.setPenColor(StdDrawEmbedded.GRAY);
+        StdDrawEmbedded.filledCircle(col + 0.5, row + 0.5, 0.25);
+        StdDrawEmbedded.show();
+        StdDrawEmbedded.pause(250);
     }
 
     // solve the maze starting from the start state
@@ -174,32 +178,33 @@ public class Maze {
     public void draw() {
         int targetCol = cols / 2;
         int targetRow = rows / 2;
-        StdDraw.setPenColor(StdDraw.RED);
-        StdDraw.filledCircle(targetCol + 0.5, targetRow + 0.5, 0.375);
-        StdDraw.filledCircle(1.5, 1.5, 0.375);
+        StdDrawEmbedded.setPenColor(StdDrawEmbedded.RED);
+        StdDrawEmbedded.filledCircle(targetCol + 0.5, targetRow + 0.5, 0.375);
+        StdDrawEmbedded.filledCircle(1.5, 1.5, 0.375);
 
-        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDrawEmbedded.setPenColor(StdDrawEmbedded.BLACK);
         for (int col = 1; col <= cols; col++) {
             for (int row = 1; row <= rows; row++) {
-                if (south[col][row]) StdDraw.line(col, row, col + 1, row);
-                if (north[col][row]) StdDraw.line(col, row + 1, col + 1, row + 1);
-                if (west[col][row]) StdDraw.line(col, row, col, row + 1);
-                if (east[col][row]) StdDraw.line(col + 1, row, col + 1, row + 1);
+                if (south[col][row]) StdDrawEmbedded.line(col, row, col + 1, row);
+                if (north[col][row]) StdDrawEmbedded.line(col, row + 1, col + 1, row + 1);
+                if (west[col][row]) StdDrawEmbedded.line(col, row, col, row + 1);
+                if (east[col][row]) StdDrawEmbedded.line(col + 1, row, col + 1, row + 1);
             }
         }
-        StdDraw.show();
-        StdDraw.pause(1000);
+        StdDrawEmbedded.show();
+        StdDrawEmbedded.pause(1000);
     }
 
 
     // a test client
+    /*
     public static void main(String[] args) {
-        int cols = Integer.parseInt(args[0]);
-        int rows = Integer.parseInt(args[1]);
+        int cols = 10;
+        int rows = 10;
         Maze maze = new Maze(cols, rows);
         StdDraw.enableDoubleBuffering();
         maze.draw();
         maze.solve();
-    }
+    }*/
 
 }
