@@ -1,6 +1,5 @@
 package mazeGame;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 
 /**
@@ -16,5 +15,10 @@ public class mazeGameControl {
 		return new Color(255, 255, 255);
 	}
 	
+	// Uses the spell scroll item
+	protected static void spellScrollSolve(Maze maze) {
+		new Thread(() -> maze.solve()).start();
+		// TODO: decrease item count in inventory & check eligibility
+	}
 	
 }

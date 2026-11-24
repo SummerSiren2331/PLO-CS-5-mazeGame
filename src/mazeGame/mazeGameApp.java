@@ -25,8 +25,11 @@ public class mazeGameApp extends JFrame {
 	protected JPanel mazeGame;
 	protected static JPanel mazePanel;
 	
-	protected static int cols = 5;
-	public static int rows = 5;
+	protected static int cols = 15;
+	protected static int rows = 15;
+	
+	protected int recordTime = 0; // update only if current time is LESS THAN record OR if record = 0.
+	protected int currentTime = 0; // use nanotime and update every second
 
 	/**
 	 * Launch the application.
@@ -50,10 +53,10 @@ public class mazeGameApp extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, windowWidth, windowHeight);
 		mazeGame = new JPanel();
-		mazeGame.setPreferredSize(new Dimension(960, 540));
+		mazeGame.setLayout(new BorderLayout(0, 0));
+		mazeGame.setPreferredSize(new Dimension(500, 500));
 		mazeGame.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(mazeGame);
-		mazeGame.setLayout(new BorderLayout(0, 0));
 		
 		JPanel settingsPanel = new JPanel();
 		mazeGame.add(settingsPanel, BorderLayout.WEST);
@@ -107,6 +110,8 @@ public class mazeGameApp extends JFrame {
 	    StdDrawEmbedded.enableDoubleBuffering();
 
 	    maze.draw();
-	    new Thread(() -> maze.solve()).start();
+	    mazeGameControl.spellScrollSolve(maze); // Remove before shipping, use only to use the scroll
 	}
+
+	
 }

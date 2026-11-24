@@ -791,17 +791,17 @@ public final class StdDrawEmbedded implements ActionListener, MouseListener, Mou
         if (onscreen  != null) onscreen.dispose();
 
         // BufferedImage stuff
-        offscreenImage = new BufferedImage(2*width, 2*height, BufferedImage.TYPE_INT_ARGB);
-        onscreenImage  = new BufferedImage(2*width, 2*height, BufferedImage.TYPE_INT_ARGB);
+        offscreenImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        onscreenImage  = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         offscreen = offscreenImage.createGraphics();
         onscreen  = onscreenImage.createGraphics();
-        offscreen.scale(2.0, 2.0);  // since we made it 2x as big
+        // Morgan Fidler. Removed scale modification
 
         // initialize drawing window
         offscreen.setBackground(DEFAULT_BACKGROUND_COLOR);
         offscreen.clearRect(0, 0, width, height);
         onscreen.setBackground(DEFAULT_BACKGROUND_COLOR);
-        onscreen.clearRect(0, 0, 2*width, 2*height);
+        onscreen.clearRect(0, 0, width, height);
 
      	// set the pen color
         offscreen.setColor(DEFAULT_PEN_COLOR);
@@ -857,11 +857,9 @@ public final class StdDrawEmbedded implements ActionListener, MouseListener, Mou
 
     // initialize the GUI - Modified by Morgan Fidler. This will create the draw panel to be embedded
     private static void initGUI() {
-
         ImageIcon icon = new ImageIcon(onscreenImage);
 
         draw = new JLabel(icon);
-
         draw.addMouseListener(std);
         draw.addMouseMotionListener(std);
     }
@@ -2080,7 +2078,7 @@ public final class StdDrawEmbedded implements ActionListener, MouseListener, Mou
             if (ImageIO.write(onscreenImage, suffix, file)) return;
 
             // if the file format does not support transparency (such as JPEG or BMP)
-            BufferedImage saveImage = new BufferedImage(2*width, 2*height, BufferedImage.TYPE_INT_RGB);
+            BufferedImage saveImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             saveImage.createGraphics().drawImage(onscreenImage, 0, 0, Color.WHITE, null);
             if (ImageIO.write(saveImage, suffix, file)) return;
 
@@ -2355,7 +2353,7 @@ public final class StdDrawEmbedded implements ActionListener, MouseListener, Mou
             try {
                 StdDrawEmbedded.applyRenderingHints(g2);
                 g2.scale(0.5, 0.5);
-                super.paintIcon(c, g2, 2*x, 2*y);
+                super.paintIcon(c, g2, x, y);
             }
             finally {
                 g2.dispose();
