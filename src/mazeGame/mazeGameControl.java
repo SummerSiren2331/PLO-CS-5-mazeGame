@@ -9,6 +9,7 @@ import java.awt.Color;
  */
 public class mazeGameControl {
 	// TODO: First, plan how to control character movement
+	// USE KEYLISTENER FROM SWING??
 	
 	// Returns color based on enum (or is there a better way to do this?)
 	public Color setColor(Palette p) {
