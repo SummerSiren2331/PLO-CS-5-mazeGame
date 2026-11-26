@@ -30,6 +30,9 @@ public class Player extends PlayerCharacter {
 		inventory.put(Interactables.SPELLSCROLL, 0);
 		inventory.put(Interactables.HELMET, 0);
 		inventory.put(Interactables.TRAP, 0);
+		
+		if (inventory.get(Interactables.SWORD) > 0) setCanAtk(true);
+		else setCanAtk(false);
 	}
 	
 	public void pickUpInteractable(Interactables item) {
@@ -64,7 +67,7 @@ public class Player extends PlayerCharacter {
 		
 		// TODO: FIGURE OUT CODE FOR USING AN ITEM DEPENDING ON WHAT IT IS
 		if (item == Interactables.SWORD) {
-			
+			// SHOULD THIS INCREASE DMG OR ONLY ALLOW THE PLAYER TO ATK IF THEY HAVE A SWORD IN THEIR INVENTORY???
 		}
 		
 		if (item == Interactables.POTION) {
@@ -72,11 +75,12 @@ public class Player extends PlayerCharacter {
 		}
 		
 		if (item == Interactables.SPELLSCROLL) {
-			
+			// TODO: FIGURE OUT HOW TO PASS IN MAZE FOR PLAYER
+			//mazeGameControl.spellScrollSolve();
 		}
 		
 		if (item == Interactables.HELMET) {
-			
+			// SHOULD THIS REMOVE X AMOUNT OF DMG FROM ENEMY IF ONE IS IN INVENTORY???
 		}
 		
 		if (item == Interactables.TRAP) {

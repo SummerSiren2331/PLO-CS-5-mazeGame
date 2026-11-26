@@ -10,7 +10,7 @@ public class PlayerCharacter {
 	private int stamina = 1;
 	private int dmg = 1;
 	
-	private boolean canAtk = false;
+	private boolean canAtk = true;
 	
 	public PlayerCharacter(int hp, int stamina, int dmg) {
 		this.hp = hp;

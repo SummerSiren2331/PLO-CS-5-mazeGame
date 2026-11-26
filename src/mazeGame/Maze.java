@@ -196,6 +196,18 @@ public class Maze {
         StdDrawEmbedded.pause(1000);
     }
 
+	public int getCols() {
+		return cols;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public boolean[][] getVisited() {
+		return visited;
+	}
+
 
     // a test client
     /*
@@ -207,5 +219,7 @@ public class Maze {
         maze.draw();
         maze.solve();
     }*/
-
+    
+    
+    
 }

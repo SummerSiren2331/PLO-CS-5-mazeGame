@@ -7,6 +7,12 @@ probably update only specific elements with StdDrawEmbedded.
 
 TODO: Implement a chat log to display console messages in the GUI?
 
+TODO: FIGURE OUT CODE FOR USING AN ITEM DEPENDING ON WHAT IT IS
+
+TODO: FIND WAY TO GET CURRENT ROW AND COLUMN TO PUSH INTO STACK FOR PATH
+
+TODO: FIGURE OUT IF THE PLAYER OBJECT CONTROLS THE USE OF ITEMS OR THE MAZECONTROL (probably mazecontrol)
+
 FINISHED TODOs----------------------------
 
 
