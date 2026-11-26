@@ -20,6 +20,9 @@ public class mazeGameControl {
 	protected static void spellScrollSolve(Maze maze) {
 		new Thread(() -> maze.solve()).start();
 		// TODO: decrease item count in inventory & check eligibility
+		
+		// FUNCTIONALITY CAN BE FOUND IN PLAYER CLASS
+		// (Player object).useInteractable(Interactables.SPELLSCROLL);
 	}
 	
 	protected static void move() {
