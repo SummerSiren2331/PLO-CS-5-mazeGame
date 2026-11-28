@@ -6,6 +6,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.JCheckBox;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
@@ -16,7 +19,7 @@ import java.awt.Dimension;
  * This is the main app/GUI of the game
  * @author Morgan Fidler
  */
-public class mazeGameApp extends JFrame {
+public class mazeGameApp extends JFrame implements KeyListener{
 	
 	protected static int windowWidth = 960;
 	protected static int windowHeight = 540;
@@ -30,6 +33,10 @@ public class mazeGameApp extends JFrame {
 	
 	protected int recordTime = 0; // update only if current time is LESS THAN record OR if record = 0.
 	protected int currentTime = 0; // use nanotime and update every second
+	
+	Maze maze;
+	int currentRow = 1;
+	int currentCol = 1;
 
 	/**
 	 * Launch the application.
@@ -95,6 +102,12 @@ public class mazeGameApp extends JFrame {
 		mazePanel = new JPanel();
 		mazePanel.setLayout(new BorderLayout());
 		mazeGame.add(mazePanel, BorderLayout.CENTER);
+		
+		// Testing key listener inside app instead of different class
+		// DELETE THIS IF THERE'S A BETTER WAY OF DOING THIS
+		addKeyListener(this);
+		setFocusable(true);
+		setVisible(true);
 	}
 
 	/*
@@ -102,7 +115,8 @@ public class mazeGameApp extends JFrame {
 	 */
 	private void startMaze() {
 	    Node[][] nodeMap = new Node[cols][rows];
-	    Maze maze = new Maze(cols, rows, nodeMap);
+	    //Maze maze = new Maze(cols, rows, nodeMap);
+	    maze = new Maze(cols, rows, nodeMap);
 
 	    mazeGameApp.mazePanel.add(StdDrawEmbedded.getDrawPanel(), BorderLayout.CENTER);
 	    mazeGameApp.mazePanel.revalidate();
@@ -110,7 +124,46 @@ public class mazeGameApp extends JFrame {
 	    StdDrawEmbedded.enableDoubleBuffering();
 
 	    maze.draw();
-	    mazeGameControl.spellScrollSolve(maze); // Remove before shipping, use only to use the scroll
+	    maze.solve(currentRow, currentCol);
+	    //mazeGameControl.spellScrollSolve(maze); // Remove before shipping, use only to use the scroll
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int code = e.getKeyCode();
+		
+		if (code == KeyEvent.VK_W) {
+			currentRow += 1;
+			maze.solve(currentCol, currentRow);
+			System.out.println("W key pressed.");
+		}
+		else if (code == KeyEvent.VK_S) {
+			currentRow -= 1;
+			maze.solve(currentCol, currentRow);
+			System.out.println("S key pressed.");
+		}
+		else if (code == KeyEvent.VK_A) {
+			currentCol -= 1;
+			maze.solve(currentCol, currentRow);
+			System.out.println("A key pressed.");
+		}
+		else if (code == KeyEvent.VK_D) {
+			currentCol += 1;
+			maze.solve(currentCol, currentRow);
+			System.out.println("D key pressed.");
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

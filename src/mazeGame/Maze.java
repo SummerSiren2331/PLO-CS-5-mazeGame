@@ -139,7 +139,8 @@ public class Maze {
 
 
     // solve the maze using depth-first search
-    private void solve(int col, int row) {
+    public void solve(int col, int row) {
+    	visited[col][row] = false;
         if (isDone) return;
         if (col == 0 || row == 0 || col == cols + 1 || row == rows + 1) return;
         if (visited[col][row]) return;
@@ -148,25 +149,28 @@ public class Maze {
         StdDrawEmbedded.setPenColor(StdDrawEmbedded.BLUE);
         StdDrawEmbedded.filledCircle(col + 0.5, row + 0.5, 0.25);
         StdDrawEmbedded.show();
-        StdDrawEmbedded.pause(250);
+        //StdDrawEmbedded.pause(250);
 
         // reached middle
         if (col == cols / 2 && row == rows / 2) isDone = true;
-
+        /*
         if (!north[col][row]) solve(col, row + 1);
         if (!east[col][row]) solve(col + 1, row);
         if (!south[col][row]) solve(col, row - 1);
         if (!west[col][row]) solve(col - 1, row);
 
         if (isDone) return;
-
+		
+        
         StdDrawEmbedded.setPenColor(StdDrawEmbedded.GRAY);
         StdDrawEmbedded.filledCircle(col + 0.5, row + 0.5, 0.25);
         StdDrawEmbedded.show();
         StdDrawEmbedded.pause(250);
+        */
     }
 
     // solve the maze starting from the start state
+    /*
     public void solve() {
         for (int col = 1; col <= cols; col++)
             for (int row = 1; row <= rows; row++)
@@ -174,6 +178,7 @@ public class Maze {
         isDone = false;
         solve(1, 1);
     }
+    */
 
     // draw the maze
     public void draw() {

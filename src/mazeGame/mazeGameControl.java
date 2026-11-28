@@ -11,6 +11,9 @@ public class mazeGameControl {
 	// USE KEYLISTENER FROM SWING??
 	// POTENTIALLY.
 	
+	// FIND WAY TO GET MAZE COLUMN VALUE
+	int cols = 15;
+	
 	// Returns color based on enum (or is there a better way to do this?)
 	public Color setColor(Palette p) {
 		return new Color(255, 255, 255);
@@ -18,7 +21,7 @@ public class mazeGameControl {
 	
 	// Uses the spell scroll item
 	protected static void spellScrollSolve(Maze maze) {
-		new Thread(() -> maze.solve()).start();
+		//new Thread(() -> maze.solve()).start();
 		// TODO: decrease item count in inventory & check eligibility
 		
 		// FUNCTIONALITY CAN BE FOUND IN PLAYER CLASS
